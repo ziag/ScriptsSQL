@@ -12,7 +12,7 @@ INNER JOIN sys.indexes AS b ON ps.OBJECT_ID = b.OBJECT_ID AND ps.index_id = b.in
 
 WHERE ps.database_id = DB_ID()
 
-and  name like '%permis%'
+--and  name like '%permis%'
 
 ORDER BY  ps.avg_fragmentation_in_percent desc, ps.page_count desc  --ps.OBJECT_ID
 
