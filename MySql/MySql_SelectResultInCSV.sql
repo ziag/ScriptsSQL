@@ -1,0 +1,4 @@
+select * from city
+INTO OUTFILE 'C:/testing.csv'
+FIELDS ENCLOSED BY '"' TERMINATED BY ';' ESCAPED BY '"'
+LINES TERMINATED BY '\r\n'
