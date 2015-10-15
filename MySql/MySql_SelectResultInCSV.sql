@@ -1,4 +1,8 @@
-select * from city
+SELECT * 
+FROM city
+
 INTO OUTFILE 'C:/testing.csv'
-FIELDS ENCLOSED BY '"' TERMINATED BY ';' ESCAPED BY '"'
+FIELDS ENCLOSED BY '"' 
+TERMINATED BY ';' 
+ESCAPED BY '"'
 LINES TERMINATED BY '\r\n'
