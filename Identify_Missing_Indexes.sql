@@ -1,3 +1,8 @@
+/*
+
+
+*/
+
 SELECT  statement AS [database.scheme.table],
 column_id , column_name, column_usage, 
 migs.user_seeks, migs.user_scans, 
