@@ -5,9 +5,7 @@
 
 
 
-DECLARE @ServerName SYSNAME
-, @Message nvarchar(1000)
-, @CMD1 nvarchar(max)
+DECLARE @ServerName SYSNAME, @Message nvarchar(1000), @CMD1 nvarchar(max)
 --
 DECLARE @Server_List Table
 ( SrvID SMALLINT
