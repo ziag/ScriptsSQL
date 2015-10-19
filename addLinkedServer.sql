@@ -2,7 +2,9 @@
 
 
  
-
+/*
+edit buro
+*/
 
 
 DECLARE @ServerName SYSNAME, @Message nvarchar(1000), @CMD1 nvarchar(max)
