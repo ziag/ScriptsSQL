@@ -1,5 +1,7 @@
 
-EXEC isp_RepairDB @SearchDBName = 'FDA',@DBCCOption = 'REPAIR_ALLOW_DATA_LOSS'
+
+
+--EXEC isp_RepairDB @SearchDBName = 'FDA',@DBCCOption = 'REPAIR_ALLOW_DATA_LOSS'
 /*
 The first parameter is the name of the database that you want to repair. The second is the level of repair that you want DBCC to do, refer to book online for the three different settings.
 
