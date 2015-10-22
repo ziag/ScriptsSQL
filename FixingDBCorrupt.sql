@@ -1,5 +1,9 @@
 
+/*
 
+je pense que je comprend
+
+*/
 
 --EXEC isp_RepairDB @SearchDBName = 'FDA',@DBCCOption = 'REPAIR_ALLOW_DATA_LOSS'
 /*
