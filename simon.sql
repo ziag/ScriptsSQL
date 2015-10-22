@@ -1,2 +1,4 @@
-select * 
-from simon
+select 
+* 
+from 
+simon
