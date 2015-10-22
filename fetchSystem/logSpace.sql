@@ -5,6 +5,15 @@ GO
 
 /*
 
+use UDA_SYNC
+go
+DBCC SHRINKFILE( [Sync_log] , 1)
+
+use Artisti_SDEG
+go
+DBCC SHRINKFILE( [UDA_SDEG_log] , 1)
+
+
 */
 
 ROLLBACK
