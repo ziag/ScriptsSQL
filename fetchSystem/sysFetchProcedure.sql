@@ -3,7 +3,7 @@ BEGIN TRAN
 
 */
 declare @str as varchar(max) 
-set @str = '%pays%'
+set @str = '%iaccess%'
 
 /*
 SELECT c.name, * 
