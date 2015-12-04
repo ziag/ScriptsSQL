@@ -1,4 +1,4 @@
----EXEC sp_serveroption @server = 'MYSQLAPP',@optname = 'remote proc transaction promotion', @optvalue = 'false' ;
+EXEC sp_serveroption @server = 'MYSQLAPP',@optname = 'remote proc transaction promotion', @optvalue = 'false' ;
 
 
 
