@@ -1,22 +1,5 @@
----EXEC sp_serveroption @server = 'MYSQLAPP',@optname = 'remote proc transaction promotion', @optvalue = 'false' ;
+EXEC sp_serveroption @server = 'MYSQLAPP',@optname = 'remote proc transaction promotion', @optvalue = 'false' ;
 
-
- 
-/*
-edit buro
-edit profil emp
-
-edit pas soumis  #2
-Hola
-Adios
-
-romeo
-joblo 
-et rigolo
-
-Richelieu
-
-*/
 
 
 DECLARE @ServerName SYSNAME, @Message nvarchar(1000), @CMD1 nvarchar(max)

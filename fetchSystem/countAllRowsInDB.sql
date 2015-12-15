@@ -1,5 +1,6 @@
 BEGIN TRAN
 
+
 CREATE TABLE #counts
 (
     table_name varchar(255),
