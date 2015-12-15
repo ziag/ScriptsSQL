@@ -1,0 +1,21 @@
+From 76a60ceb0d5bb43e8cad2efda2d0c1efd049b3fd Mon Sep 17 00:00:00 2001
+From: ziag <ziag@yahoo.com>
+Date: Wed, 21 Oct 2015 21:43:50 -0400
+Subject: [PATCH] un autre
+
+---
+ CreateDbMail.sql | Bin 1164 -> 1190 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+diff --git a/CreateDbMail.sql b/CreateDbMail.sql
+index c3c2a30cedd5bb639beaa86e37fbde3e97f980cf..cb41f742480d1ce3e67fbf2eb79959046cfb4930 100644
+GIT binary patch
+delta 39
+ncmeC-T*f(JhGZE-8ABdJE|^SaNMc9^@<2FgqNeG_GY6Of*3%0q
+
+delta 10
+RcmZ3+*~2+u#>P!wm;o4*1jhgX
+
+-- 
+1.9.1
+
