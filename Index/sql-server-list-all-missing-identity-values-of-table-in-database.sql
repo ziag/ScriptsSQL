@@ -142,8 +142,8 @@ WHILE @count < =  ( SELECT COUNT(* ) FROM @Store_TABLE_Info)
 
 			DROP TABLE #Temp_'+CONVERT(varchar , @Count) 
 
-			--print @Sqlcmd1 
-			 EXEC Sp_EXECutesql @Sqlcmd1 
+			print @Sqlcmd1 
+			-- EXEC Sp_EXECutesql @Sqlcmd1 
 		SET @count = @count + 1
 END 
 
