@@ -1,5 +1,11 @@
 BEGIN TRAN
 
-select object_name(object_id) ,OBJECT_DEFINITION(object_id) from sys.objects where OBJECT_DEFINITION(object_id) like '%sigart%' and type='P'
+
+SELECT OBJECT_NAME(OBJECT_ID) AS NomSP
+	  ,OBJECT_DEFINITION(OBJECT_ID) AS scriptSP
+FROM sys.objects 
+WHERE OBJECT_DEFINITION(OBJECT_ID) LIKE '%plage%' 
+AND TYPE='P'
+
 
 ROLLBACK

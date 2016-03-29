@@ -8,5 +8,5 @@ on a.id = b.object_id
 where b.type = 'U'
 
  
-  
+ EXECUTE sp_updatestats
 ROLLBACK
