@@ -1,7 +1,6 @@
 SELECT * 
-FROM city
-
-INTO OUTFILE 'C:/testing.csv'
+FROM sakila.actor
+INTO OUTFILE '/tmp/actor.csv'
 FIELDS ENCLOSED BY '"' 
 TERMINATED BY ';' 
 ESCAPED BY '"'
