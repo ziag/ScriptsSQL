@@ -188,4 +188,4 @@ LEFT OUTER JOIN (SELECT job_id, max(run_duration) AS run_duration
 ON dbo.sysjobs.job_id = Q1.job_id
 WHERE Next_run_time <> 0
 
-ORDER BY [Start Date],[Start Time]
+ORDER BY [Start Time],[Start Date]
