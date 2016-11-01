@@ -1,0 +1,7 @@
+SELECT SUSER_NAME(), USER_NAME();  
+
+runas /user:domain\username program.exe
+
+ou a partir d'un autre domaine
+
+runas /netonly /user:domain\username program.exe
