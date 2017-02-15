@@ -13,6 +13,7 @@ SELECT
     SUM(a.total_pages) * 8 AS TotalSpaceKB, 
     SUM(a.used_pages) * 8 AS UsedSpaceKB, 
     (SUM(a.total_pages) * 8)/1024 AS TotalSpaceMB, 
+    ((SUM(a.total_pages) * 8)/1024) / 1024 AS TotalSpaceGo, 
     (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB
 FROM 
     sys.tables t

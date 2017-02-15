@@ -3,9 +3,10 @@ BEGIN TRAN
 SELECT  t.name as NomTable
 		,c.name as NomColonne 
 		,p.name as  [DataType]
+		,c.max_length 
 		,c.is_identity
 		,c.is_nullable
-		,c.max_length 
+	 
 		
 FROM    sys.tables as t
 
@@ -16,7 +17,10 @@ JOIN SYS.TYPES AS P
 ON C.SYSTEM_TYPE_ID=P.SYSTEM_TYPE_ID
 
 
-WHERE t.name in ('tabTransactions', 'tabPaiement','tabItem') 
+WHERE t.name in ('tabTransactions', 'tabPaiement','tabItem', 'tabnomitem','tabTypeCompte'
+				,'tabcompagnie','tabFraisenPorcentage','tabTypePaiement','tabdepot') 
+
+AND p.name <> 'sysname'
 
 ORDER BY NomTable  desc
 

@@ -7,6 +7,6 @@ inner join sys.objects as b
 on a.id = b.object_id
 where b.type = 'U'
 
+ORDER BY  stats_date (id,indid) desc
  
- EXECUTE sp_updatestats
 ROLLBACK

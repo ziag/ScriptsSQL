@@ -16,16 +16,16 @@
 --------------------------------------------------------------------------------------------------------------
 -- Étape 1: identifier le ID du diagramme à exporter (colonne diagram_id)
 --------------------------------------------------------------------------------------------------------------
-SELECT * FROM #DB_SOURCE#.dbo.sysdiagrams
+SELECT * FROM UDA_Axiant.dbo.sysdiagrams
 
 
 --------------------------------------------------------------------------------------------------------------
 -- Étape 2: exporter le diagramme en spécifiant son ID dans la base de données source.
 --------------------------------------------------------------------------------------------------------------
 DECLARE @DiagramID AS INT
-SET @DiagramID = 55
+SET @DiagramID = 1
 
-INSERT INTO #DB_TARGET#.dbo.sysdiagrams
+--INSERT INTO UDA_Axiant.dbo.sysdiagrams
 SELECT diagram.name, diagram.principal_id, diagram.version, diagram.definition
-FROM #DB_SOURCE#.dbo.sysdiagrams diagram
+FROM UDA_Axiant.dbo.sysdiagrams diagram
 WHERE diagram.diagram_id = @DiagramID
