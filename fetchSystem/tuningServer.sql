@@ -96,3 +96,6 @@ CROSS APPLY sys.dm_db_stats_properties(sc.[object_id], s.stats_id) AS dsp
 WHERE OBJECTPROPERTY(s.OBJECT_ID,'IsUserTable') = 1
 AND (s.auto_created = 1 OR s.user_created = 1)
 ORDER BY DaysOld;
+
+
+--exec  sp_updatestats
