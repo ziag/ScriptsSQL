@@ -16,7 +16,7 @@
 --------------------------------------------------------------------------------------------------------------
 -- Étape 1: identifier le ID du diagramme à exporter (colonne diagram_id)
 --------------------------------------------------------------------------------------------------------------
-SELECT * FROM UDA_Axiant.dbo.sysdiagrams
+SELECT * FROM CSA_REER.dbo.sysdiagrams
 
 
 --------------------------------------------------------------------------------------------------------------
@@ -27,5 +27,5 @@ SET @DiagramID = 1
 
 --INSERT INTO UDA_Axiant.dbo.sysdiagrams
 SELECT diagram.name, diagram.principal_id, diagram.version, diagram.definition
-FROM UDA_Axiant.dbo.sysdiagrams diagram
+FROM CSA_REER.dbo.sysdiagrams diagram
 WHERE diagram.diagram_id = @DiagramID
