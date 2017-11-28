@@ -1,55 +1,55 @@
  
 	
-USE [msdb]
+USE [msdb];
 GO
 
 
 
-SET NOCOUNT ON
+SET NOCOUNT ON;
 
-DECLARE  @name nvarchar(50)
+DECLARE  @name NVARCHAR(50);
 
-declare @job nvarchar(50)
-declare @path nvarchar(max) 
+DECLARE @job NVARCHAR(50);
+DECLARE @path NVARCHAR(MAX); 
 
 DECLARE db_cursor CURSOR FOR 
 
-select  name from sys.databases
+SELECT  name FROM sys.databases
 --where database_id > 8 or database_id  = 7
-order by database_id 
+ORDER BY database_id; 
 
-OPEN db_cursor
+OPEN db_cursor;
 
 FETCH NEXT FROM db_cursor 
-INTO @name
+INTO @name;
 
 WHILE @@FETCH_STATUS = 0
-begin
+BEGIN
 
-	set @job = 'Bak_Path_' + @name
-	print 'job ' + @job
-	set @path = '\\UDA-DC\D$\\BCK_SQL_UDANET\Main\Bak_Full_' + @name + '.bak'
+	SET @job = 'Bak_Path_' + @name;
+	PRINT 'job ' + @job;
+	SET @path = '\\UDA-DC\D$\\BCK_SQL_UDANET\Main\Bak_Full_' + @name + '.bak';
 
 
 /****** Objet :  Job [mp_Bak_Full.Subplan_1]    Date de génération du script : 03/19/2008 13:02:07 ******/
-BEGIN TRANSACTION
-DECLARE @ReturnCode INT
-SELECT @ReturnCode = 0
+BEGIN TRANSACTION;
+DECLARE @ReturnCode INT;
+SELECT @ReturnCode = 0;
 /****** Objet :  JobCategory [Database Maintenance]    Date de génération du script : 03/19/2008 13:02:07 ******/
 IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'Database Maintenance' AND category_class=1)
 BEGIN
-EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'Database Maintenance'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+EXECUTE @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'Database Maintenance';
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 
-END
+END;
 
-DECLARE @jobId BINARY(16)
-declare @jobname varchar(max)
-set @jobname = 'mp_Bak_Full_' + @name
+DECLARE @jobId BINARY(16);
+DECLARE @jobname VARCHAR(MAX);
+SET @jobname = 'mp_Bak_Full_' + @name;
 
 
-set @jobId = null 
-EXEC @ReturnCode = msdb.dbo.sp_add_job @job_name = @jobname,
+SET @jobId = NULL; 
+EXECUTE @ReturnCode = msdb.dbo.sp_add_job @job_name = @jobname,
 		@enabled=1, 
 		@notify_level_eventlog=2, 
 		@notify_level_email=0, 
@@ -58,22 +58,22 @@ EXEC @ReturnCode = msdb.dbo.sp_add_job @job_name = @jobname,
 		@delete_level=0, 
 		@description=N'Pas de description disponible.', 
 		@category_name=N'Database Maintenance', 
-		@owner_login_name=N'UDA\shuard', @job_id = @jobId OUTPUT
+		@owner_login_name=N'UDA\shuard', @job_id = @jobId OUTPUT;
 
 
-print 'jobid == ' + cast(@jobId as varchar(16))
+PRINT 'jobid == ' + CAST(@jobId AS VARCHAR(16));
 
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 
 /****** Objet :  Step [Subplan_1]    Date de génération du script : 03/19/2008 13:02:08 ******/--N'Subplan_1', 
 
-declare @CommandLine varchar(max)
-declare @MP_NAME varchar(max) 
+DECLARE @CommandLine VARCHAR(MAX);
+DECLARE @MP_NAME VARCHAR(MAX); 
 
-set @MP_NAME = 'mp_Bak_Full_' + @name 
-set @CommandLine = N'/Server "$(ESCAPE_NONE(SRVR))" /SQL "Maintenance Plans\' + @MP_NAME + '" /set "\Package\Subplan_1.Disable;false"'
+SET @MP_NAME = 'mp_Bak_Full_' + @name; 
+SET @CommandLine = N'/Server "$(ESCAPE_NONE(SRVR))" /SQL "Maintenance Plans\' + @MP_NAME + '" /set "\Package\Subplan_1.Disable;false"';
 
-EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name= @name,
+EXECUTE @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name= @name,
 		@step_id=1, 
 		@cmdexec_success_code=0, 
 		@on_success_action=1, 
@@ -84,18 +84,18 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name= @name,
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'SSIS', 
 		@command= @CommandLine, 
-		@flags=0
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+		@flags=0;
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
+EXECUTE @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1;
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 
-declare @time as int 
-declare @timeadd as int 
-set @timeadd = @timeadd + 1
-set @time = @timeadd 
+DECLARE @time AS INT; 
+DECLARE @timeadd AS INT; 
+SET @timeadd = @timeadd + 1;
+SET @time = @timeadd; 
 
 --N'mp_Bak_Full.Subplan_1', 
-EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name= @MP_NAME,
+EXECUTE @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name= @MP_NAME,
 		@enabled=1, 
 		@freq_type=4, 
 		@freq_interval=1, 
@@ -106,31 +106,31 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name= @MP_NAME,
 		@active_start_date=20080319, 
 		@active_end_date=99991231, 
 		@active_start_time=@time, 
-		@active_end_time=235959
+		@active_end_time=235959;
 
 
 
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
+EXECUTE @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)';
+IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback;
 
 
-GOTO EndSave
-QuitWithRollback:
-    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
-	print 'erreur ' + @name
-EndSave:
-COMMIT TRANSACTION
+GOTO EndSave;
+QuitWithRollback:;
+    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION;
+	PRINT 'erreur ' + @name;
+EndSave:;
+COMMIT TRANSACTION;
 
 FETCH NEXT FROM db_cursor 
-INTO @name
+INTO @name;
 
 	--EXEC master.dbo.sp_dropdevice @logicalname = @job
-	print  @job
+	PRINT  @job;
 -- Get the next vendor.
 
-END 
-CLOSE db_cursor
-DEALLOCATE db_cursor
+END; 
+CLOSE db_cursor;
+DEALLOCATE db_cursor;
 
 

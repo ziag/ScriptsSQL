@@ -1,4 +1,4 @@
-BEGIN TRAN
+BEGIN TRANSACTION
 
 /*
 	shows jobs with overlapping runtime
@@ -8,21 +8,21 @@ BEGIN TRAN
 	- only scheduled jobs are checked
 	- only jobs from the last 7 days
 */
-;with CTE as (
-	SELECT b.name as job_name, a.start_execution_date, a.stop_execution_date, datediff(minute, a.start_execution_date, a.stop_execution_date) as run_time
+;WITH CTE AS (
+	SELECT b.name AS job_name, a.start_execution_date, a.stop_execution_date, DATEDIFF(MINUTE, a.start_execution_date, a.stop_execution_date) AS run_time
 	FROM msdb.dbo.sysjobactivity a
-	join msdb.dbo.sysjobs b
-	on a.job_id = b.job_id
+	JOIN msdb.dbo.sysjobs b
+	ON a.job_id = b.job_id
 	WHERE a.start_execution_date > DATEADD(dd, -7, GETDATE()) -- date criteria
-	and datediff(minute, a.start_execution_date, a.stop_execution_date) > 5 -- runtime criteria
-	and a.run_requested_source = 1 -- scheduler only
+	AND DATEDIFF(MINUTE, a.start_execution_date, a.stop_execution_date) > 5 -- runtime criteria
+	AND a.run_requested_source = 1 -- scheduler only
 )
-select a.job_name, a.start_execution_date, a.run_time, b.job_name, b.start_execution_date, b.run_time
-from CTE a, CTE b
-where a.start_execution_date between b.start_execution_date and b.stop_execution_date
-and a.job_name <> b.job_name
-and (a.start_execution_date > b.start_execution_date or a.stop_execution_date between b.start_execution_date and b.stop_execution_date)
+SELECT a.job_name, a.start_execution_date, a.run_time, b.job_name, b.start_execution_date, b.run_time
+FROM CTE a, CTE b
+WHERE a.start_execution_date BETWEEN b.start_execution_date AND b.stop_execution_date
+AND a.job_name <> b.job_name
+AND (a.start_execution_date > b.start_execution_date OR a.stop_execution_date BETWEEN b.start_execution_date AND b.stop_execution_date)
 ;
 
 
-ROLLBACK
+ROLLBACK;
