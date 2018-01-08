@@ -3,7 +3,7 @@ BEGIN TRAN
 
 */
 declare @str as varchar(max) 
-set @str = '%tab%'
+set @str = '%cotis%'
 
 /*
 SELECT c.name, * 
@@ -23,6 +23,12 @@ FROM SYSCOMMENTS
 WHERE [text] LIKE @str
 AND OBJECTPROPERTY(id, 'IsProcedure') = 1 
 --GROUP BY OBJECT_NAME(id)
+
+SELECT OBJECT_NAME(object_id)
+FROM sys.sql_modules
+WHERE OBJECTPROPERTY(object_id, 'IsProcedure') = 1
+AND  OBJECT_NAME(object_id) LIKE @str
+
     
    /* 
 SELECT OBJECT_NAME(object_id)
