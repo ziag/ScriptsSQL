@@ -10,8 +10,9 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
 -- =============================================
+-- Ceci est un test.
+
 -- Author:		Carlton B Ramsey
 -- Create date: 05/20/2015
 -- Description:	T-SQL Magic 8 Ball.  For when you need to consult the oracle.
