@@ -3,7 +3,7 @@ BEGIN TRAN
 
 */
 declare @str as varchar(max) 
-set @str = '%cotis%'
+set @str = '%uda-sql%'
 
 /*
 SELECT c.name, * 
