@@ -1,7 +1,7 @@
 BEGIN TRAN
 
 DECLARE @Text nvarchar(4000);
-SET @Text = 'Account';
+SET @Text = 'AuditEventTrigger_Nubik';
 
 -- Get the schema name, table name, and table type for:
 
@@ -33,5 +33,8 @@ FROM  INFORMATION_SCHEMA.ROUTINES
 WHERE ROUTINE_DEFINITION LIKE '%'+@Text+'%'
       AND (ROUTINE_TYPE = 'function' OR ROUTINE_TYPE = 'procedure');    
 
+
+
+	  EXECUTE sp_help 'AuditEventTrigger_Nubik'
 
 ROLLBACK

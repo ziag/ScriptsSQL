@@ -3,7 +3,7 @@ BEGIN TRAN
 
 */
 declare @str as varchar(max) 
-set @str = '%uda-sql%'
+set @str = '%AuditEventTrigger_Nubik%'
 
 /*
 SELECT c.name, * 
