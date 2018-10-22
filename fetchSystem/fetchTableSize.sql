@@ -22,11 +22,16 @@ WHERE
     t.NAME NOT LIKE 'dt%' 
     AND t.is_ms_shipped = 0
     AND i.OBJECT_ID > 255 
+
+	-- and t.NAME like '%audits%'
+
 GROUP BY 
     t.Name, p.Rows
 ORDER BY 
 	 SUM(a.total_pages) desc
 	, t.Name
+
+
 
 
 --SELECT  *
