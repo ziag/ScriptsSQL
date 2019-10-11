@@ -1,7 +1,7 @@
 BEGIN TRAN
 
  
-DECLARE @nt VARCHAR(50) = '%tblIntervenantsTypes%'
+DECLARE @nt VARCHAR(50) = '%N_A_S%'
 
 --SELECT  DISTINCT(p.objName) AS procedureStocke
 --		,t.name AS nomTable 		
