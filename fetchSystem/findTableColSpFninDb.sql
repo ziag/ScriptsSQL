@@ -1,7 +1,7 @@
 BEGIN TRAN
 
 DECLARE @Text nvarchar(4000);
-SET @Text = 'AuditEventTrigger_Nubik';
+SET @Text = 'tblArtistesAlias';
 
 -- Get the schema name, table name, and table type for:
 
@@ -35,6 +35,11 @@ WHERE ROUTINE_DEFINITION LIKE '%'+@Text+'%'
 
 
 
-	  EXECUTE sp_help 'AuditEventTrigger_Nubik'
+	  --EXECUTE sp_help 'AuditEventTrigger_Nubik'
+
+
+	  SELECT c.name, * FROM sys.tables AS t 
+	  INNER JOIN  sys.columns AS c ON c.object_id = t.object_id 
+	  WHERE c.name LIKE '%Pseudonyme%'
 
 ROLLBACK
