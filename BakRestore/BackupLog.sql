@@ -1,9 +1,9 @@
 
-BACKUP LOG [AdventureWorks2012]
-TO  DISK = N'<filelocation, backup name>'
+BACKUP LOG [Bouffe]
+TO  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Backup\BKlog.bak'
 WITH NOFORMAT,
      			INIT,
-     			NAME = N'AdventureWorks2012-Log Backup',
+     			NAME = N'Bouffe-Log Backup',
      			SKIP,
      			NOREWIND,
      			NOUNLOAD,
@@ -13,19 +13,19 @@ GO
 DECLARE @backupSetId AS INT;
 SELECT @backupSetId = position
 FROM msdb..backupset
-WHERE database_name = N'AdventureWorks2012'
+WHERE database_name = N'bouffe'
       			AND backup_set_id =
       		(
           		SELECT MAX(backup_set_id)
           		FROM msdb..backupset
-          		WHERE database_name = N'AdventureWorks2012'
+          		WHERE database_name = N'bouffe'
       		);
 IF @backupSetId IS NULL
 BEGIN
-RAISERROR(N'Verify failed. Backup information for database ''AdventureWorks2012'' not found.', 16, 1);
+RAISERROR(N'Verify failed. Backup information for database ''Bouffe'' not found.', 16, 1);
 END;
 RESTORE VERIFYONLY
-FROM DISK = N'<filelocation, backup name>'
+FROM DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Backup\BKlog.bak'
 WITH FILE = @backupSetId,
      		NOUNLOAD,
      		NOREWIND;
