@@ -1,15 +1,15 @@
-BEGIN TRAN
-
-SELECT  *
-FROM   Sigart.dbo.tblIntervenants as i  
-where NoTVP = '' 
+BEGIN TRAN;
 
 
 
-SELECT  *
-FROM    sys.tables as t 
-inner join sys.columns as c on t.object_id = c.object_id 
-where c.name like '%dateChoix%'
+
+SELECT t.*
+	   ,c.*
+
+FROM sys.tables AS t
+    INNER JOIN sys.columns AS c
+        ON t.object_id = c.object_id
+WHERE c.name LIKE '%dispen%';
 
 
-ROLLBACK
+ROLLBACK;
