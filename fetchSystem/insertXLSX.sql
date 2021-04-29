@@ -63,26 +63,31 @@ select *
 from tempPayPal   
 
 */
-BULK INSERT tempPayPal FROM 'D:\tempSQL\pp.TXT'
-WITH (FIELDTERMINATOR ='\t',ROWTERMINATOR =' \n')
+--BULK INSERT tempPayPal FROM 'D:\tempSQL\pp.TXT'
+--WITH (FIELDTERMINATOR ='\t',ROWTERMINATOR =' \n')
 
-/*You now have your bulk data*/
+--/*You now have your bulk data*/
 
-insert into tempPayPal  --(field1, field2, field3, field4, field5, field6)
-select * --txt.FIELD1, txt.FIELD2, txt.FIELD3, txt.FIELD4, 'something else1', 'something else2' 
-from tempPayPal  --#TEXTFILE_1 txt
+--insert into tempPayPal  --(field1, field2, field3, field4, field5, field6)
+--select * --txt.FIELD1, txt.FIELD2, txt.FIELD3, txt.FIELD4, 'something else1', 'something else2' 
+--from tempPayPal  --#TEXTFILE_1 txt
 
 -- drop table #TEXTFILE_1
 
-
---SELECT *
-----INTO BonusUpload
---FROM
---OPENROWSET('Microsoft.ACE.OLEDB.12.0'
---,'Excel 12.0 Xml;HDR=YES;
---Database=D:\tempSQL\pp.xlsx'
---,'SELECT * FROM [Download]'
---)
+sp_configure 'show advanced options', 1;
+RECONFIGURE;
+GO
+sp_configure 'Ad Hoc Distributed Queries', 1;
+RECONFIGURE;
+GO
+SELECT *
+--INTO BonusUpload
+FROM
+OPENROWSET('Microsoft.ACE.OLEDB.16.0'
+,'Excel 16.0 Xml;HDR=YES;
+Database=C:\Source\un.xlsx'
+,'SELECT * FROM [Feuil1$]'
+)
 
 
  
