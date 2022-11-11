@@ -8,7 +8,7 @@ SELECT
    msdb.dbo.backupset.database_name,  
    msdb.dbo.backupset.backup_start_date,  
    msdb.dbo.backupset.backup_finish_date, 
-   datediff(second,msdb.dbo.backupset.backup_start_date,msdb.dbo.backupset.backup_finish_date) duration_seconds,
+   DATEDIFF(SECOND,msdb.dbo.backupset.backup_start_date,msdb.dbo.backupset.backup_finish_date) duration_seconds,
    msdb.dbo.backupset.expiration_date, 
         CASE WHEN backupset.type = 'D' THEN 'Full backup'
              WHEN backupset.type = 'I' THEN 'Differential'
@@ -30,5 +30,15 @@ WHERE  (CONVERT(datetime, msdb.dbo.backupset.backup_start_date, 102) >= GETDATE(
 ORDER BY  
    msdb.dbo.backupset.database_name, 
    msdb.dbo.backupset.backup_finish_date
+
+
+SELECT  d.NAME, MAX(B.backup_finish_date) AS last_backup_finish_date
+FROM    MASTER.sys.databases d WITH (NOLOCK)
+LEFT OUTER JOIN msdb.dbo.backupset b WITH (NOLOCK) ON d.name = b.database_name AND b.type = 'D'
+WHERE d.name <> 'tempdb'
+GROUP BY d.name
+ORDER BY 2
+
+
 
 ROLLBACK
