@@ -23,3 +23,5 @@ INNER JOIN sys.schemas s
 WHERE sysobjects.type = 'TR' 
 
 order by table_name
+
+ 
