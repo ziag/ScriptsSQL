@@ -1,12 +1,43 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\simon\\OneDrive\\Documents\\GitHub\\ScriptsSQL\\Scripts SQL Server\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{705C8D5A-D328-9DAA-63EC-FBC69589BA85}|Scripts SQL Server\\Scripts SQL Server.ssmssqlproj|C:\\Users\\simon\\OneDrive\\Documents\\GitHub\\ScriptsSQL\\Scripts SQL Server\\Scripts SQL Server\\FetchConnexion.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{705C8D5A-D328-9DAA-63EC-FBC69589BA85}|Scripts SQL Server\\Scripts SQL Server.ssmssqlproj|solutionrelative:Scripts SQL Server\\FetchConnexion.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FetchConnexion.sql - localhost.DB_Python (LAPTOP-KI7OEOM0\\simon (52))",
+              "DocumentMoniker": "C:\\Users\\simon\\OneDrive\\Documents\\GitHub\\ScriptsSQL\\Scripts SQL Server\\Scripts SQL Server\\FetchConnexion.sql",
+              "RelativeDocumentMoniker": "Scripts SQL Server\\FetchConnexion.sql",
+              "ToolTip": "FetchConnexion.sql - localhost.DB_Python (LAPTOP-KI7OEOM0\\simon (52))",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-10-17T00:13:17.755Z",
+              "EditorCaption": " - localhost.DB_Python (LAPTOP-KI7OEOM0\\simon (52))"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
